@@ -1,6 +1,6 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
+// const API_KEY = import.meta.env.VITE_API_KEY;
 function App() {
-  return <div className="h2 text-gray-900 text-4xl">Hello Web,</div>;
+  return <div className="text-4xl text-gray-900 h2">Hello Web,</div>;
 }
 
 export default App;
