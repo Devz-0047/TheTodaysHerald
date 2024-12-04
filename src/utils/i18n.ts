@@ -7,12 +7,12 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      welcomeMessage: "Welcome to React and react-i18next",
+      welcomeMessage: "Welcome to {{count}} notification",
     },
   },
   fr: {
     translation: {
-      welcomeMessage: "Bienvenue à React et react-i18next",
+      welcomeMessagey: "Vous avez {{count}} notification",
     },
   },
 };
