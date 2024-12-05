@@ -24,7 +24,7 @@ function NavBar() {
         <p className="font-serif text-xs font-semibold">{formattedDate}</p>
         <button>
           <p className="font-serif text-[0.65rem] text-green-700">
-            SUBSCRIBE FOR ₹14/WEEK
+            SUBSCRIBE FOR ₹14/WEEK{isMenuOpen}
           </p>
         </button>
       </div>
