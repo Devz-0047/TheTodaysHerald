@@ -1,11 +1,28 @@
-export default function App() {
+import { Toaster } from "react-hot-toast";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+export default function App(): JSX.Element {
   return (
-    <>
-      <h2>Hello</h2>
-      <h1 className="font-sans text-xl">This text uses Roboto or Open Sans.</h1>
-      <p className="font-serif text-lg">
-        This text uses Georgia or Merriweather.
-      </p>
-    </>
+    <BrowserRouter>
+      <div>
+        <Toaster
+          position="top-left"
+          toastOptions={{ style: { background: "#f1f3f5" } }}
+        />
+      </div>
+      <div>
+        <NavBar />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+/* <h1 className="font-sans text-xl">This text uses Roboto or Open Sans.</h1>
+      <p className="font-serif text-lg">
+        This text uses Georgia or Merriweather. */
