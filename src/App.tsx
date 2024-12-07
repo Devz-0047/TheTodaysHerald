@@ -6,19 +6,21 @@ import NotFound from "./pages/NotFound";
 export default function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <div>
-        <Toaster
-          position="top-left"
-          toastOptions={{ style: { background: "#f1f3f5" } }}
-        />
+      <div className="max-w-screen-xl mx-auto">
+        <div>
+          <Toaster
+            position="top-left"
+            toastOptions={{ style: { background: "#f1f3f5" } }}
+          />
+        </div>
+        <div>
+          <NavBar />
+        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
-      <div>
-        <NavBar />
-      </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
     </BrowserRouter>
   );
 }
