@@ -6,9 +6,12 @@ import formattedDate from "../utils/DateGetter";
 import { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
-import { FaAngleDown } from "react-icons/fa6";
+import useGetStockValue from "../utils/usegetStockValue";
+// import { FaAngleDown } from "react-icons/fa6";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const { stockValue } = useGetStockValue();
+  console.log(stockValue);
   return (
     <nav className="z-20 flex flex-col ">
       <div className="items-center bg-[#f1f3f5] justify-between hidden lg:flex px-3 pt-2">
@@ -22,10 +25,10 @@ function NavBar() {
           <button>español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
-          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem]">
+          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
             Subscribe Now
           </button>
-          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem]">
+          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
             Login
           </button>
         </div>
@@ -46,7 +49,10 @@ function NavBar() {
         </NavLink>
         <button>
           <p className="hidden font-serif text-sm font-semibold lg:inline">
-            {formattedDate}
+            $
+            {stockValue?.["Global Quote"]?.["05. price"]
+              ? parseFloat(stockValue["Global Quote"]["05. price"]).toFixed(2)
+              : ""}
           </p>
           <IoPersonSharp className="text-xl lg:hidden " />
         </button>
@@ -133,25 +139,65 @@ function NavBar() {
         </button>
       </div>
       {isMenuOpen && (
-        <div className="fixed bg-[#e9ecef] inset-0 p-3 lg:hidden z-30">
-          <div className="flex flex-col items-start justify-between gap-4 text-lg font-semibold">
-            <button
-              onClick={() => {
-                setIsMenuOpen((prev) => !prev);
-              }}
-            >
+        <div className="fixed bg-[#e9ecef] inset-0 p-3 lg:hidden z-30 overflow-y-auto ">
+          <div className="flex flex-col items-start w-full gap-4 text-lg font-semibold">
+            {/* Close Button */}
+            <button onClick={() => setIsMenuOpen((prev) => !prev)}>
               <IoCloseSharp className="text-2xl" />
             </button>
-            <div className="flex items-center justify-between flex-1">
-              <button className="py-2 border-b-2 border-slate-600">US</button>
-              <button>
-                <FaAngleDown />
-              </button>
+            {/* Search bar */}
+            <div className="flex items-center justify-center w-full text-stone-700">
+              <form className="flex items-center w-full gap-2 ">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="w-full px-2 py-1 border border-gray-900 rounded-sm focus:outline-none focus:border-0 focus:outline-2 focus:outline-gray-900 "
+                />
+
+                <button
+                  type="submit"
+                  className="bg-[#326891] text-white px-2 py-1 rounded-sm"
+                >
+                  Go
+                </button>
+              </form>
             </div>
-            <div>
-              <button className="py-2 border-b-2 border-slate-600">
-                International
-              </button>
+
+            {/* US Button */}
+            <div className="w-full border-b-[1px] border-slate-500 ">
+              <button className="w-full py-2 pl-[-0.5rem] text-left">US</button>
+            </div>
+
+            {/* World Button */}
+            <div className="w-full border-b-[1px] border-slate-500 ">
+              <button className="w-full py-2 text-left">World</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Business</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Arts</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Lifestyle</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Opinion</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Audio</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Games</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Cooking</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">Wirecutter</button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left">The Athletics</button>
             </div>
           </div>
         </div>
