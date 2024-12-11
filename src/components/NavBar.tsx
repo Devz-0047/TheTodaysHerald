@@ -6,7 +6,7 @@ import formattedDate from "../utils/DateGetter";
 import { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
-import useGetStockValue from "../utils/usegetStockValue";
+import useGetStockValue from "../utils/useGetStockValue";
 // import { FaAngleDown } from "react-icons/fa6";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
