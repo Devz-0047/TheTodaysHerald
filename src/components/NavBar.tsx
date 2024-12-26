@@ -3,15 +3,41 @@ import logo from "../assets/logo.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoPersonSharp } from "react-icons/io5";
 import formattedDate from "../utils/DateGetter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
-import useGetStockValue from "../utils/useGetStockValue";
+import useGetStockValues from "../utils/useGetStockValues";
 // import { FaAngleDown } from "react-icons/fa6";
+
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const { stockValue } = useGetStockValue();
-  console.log(stockValue);
+  const { stockValues, isLoading } = useGetStockValues();
+  const [currentStock, setCurrentStock] = useState<string | null>(null);
+
+  // const fixedStockValue = stockValue?.["Global Quote"]?.["05. price"]
+  //   ? parseFloat(stockValue["Global Quote"]["05. price"]).toFixed(2)
+  //   : "";
+  // console.log(stockValues);
+
+  // Cycle through stocks every 5 seconds
+  useEffect(() => {
+    if (!stockValues) return;
+
+    const symbols = Object.keys(stockValues);
+    if (symbols.length === 0) return;
+
+    setCurrentStock((prev) => prev ?? symbols[0]); // Initialize currentStock
+
+    const interval = setInterval(() => {
+      setCurrentStock((prev) => {
+        const currentIndex = symbols.indexOf(prev ?? symbols[0]);
+        return symbols[(currentIndex + 1) % symbols.length]; // Cycle to the next stock
+      });
+    }, 5000);
+
+    return () => clearInterval(interval); // Cleanup on unmount or stockValues change
+  }, [stockValues]);
+
   return (
     <nav className="z-20 flex flex-col ">
       <div className="items-center bg-[#f1f3f5] justify-between hidden lg:flex px-3 pt-2">
@@ -19,10 +45,10 @@ function NavBar() {
           <MdOutlineSearch className="text-2xl" />
         </button>
         <div className="flex items-center gap-4 ml-48 font-serif text-sm">
-          <button>English</button>
-          <button>हिन्दी</button>
-          <button>français</button>
-          <button>español</button>
+          <button className="hover:text-[#326891]">English</button>
+          <button className="hover:text-[#326891]">हिन्दी</button>
+          <button className="hover:text-[#326891]">français</button>
+          <button className="hover:text-[#326891]">español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
@@ -48,13 +74,49 @@ function NavBar() {
           <img src={logo} className="h-7 lg:h-18 md:h-14 sm:h-10" />
         </NavLink>
         <button>
-          <p className="hidden font-serif text-sm font-semibold lg:inline">
-            $
-            {stockValue?.["Global Quote"]?.["05. price"]
-              ? parseFloat(stockValue["Global Quote"]["05. price"]).toFixed(2)
-              : ""}
-          </p>
-          <IoPersonSharp className="text-xl lg:hidden " />
+          {isLoading
+            ? ""
+            : stockValues &&
+              currentStock && (
+                <div>
+                  {currentStock === "QQQ" ? "NDQ" : "SAP"}: $
+                  {stockValues[currentStock]?.price
+                    ? Number(stockValues[currentStock].price).toFixed(2)
+                    : "N/A"}{" "}
+                  (
+                  {stockValues[currentStock]?.changePercent ? (
+                    <span
+                      className={
+                        stockValues[currentStock].changePercent.startsWith("-")
+                          ? "text-red-700" // Negative change
+                          : "text-green-700" // Positive change
+                      }
+                    >
+                      {`${Number(
+                        stockValues[currentStock].changePercent.replace("%", "")
+                      ).toFixed(2)}%`}
+                    </span>
+                  ) : (
+                    "N/A"
+                  )}
+                  )
+                </div>
+
+                // <div>
+                //   {currentStock}: $
+                //   {stockValues[currentStock]?.price
+                //     ? Number(stockValues[currentStock].price).toFixed(2)
+                //     : "N/A"}{" "}
+                //   (
+                //   {stockValues[currentStock]?.changePercent
+                //     ? `${Number(
+                //         stockValues[currentStock].changePercent.replace("%", "")
+                //       ).toFixed(2)}%`
+                //     : "N/A"}
+                //   )
+                // </div>
+              )}
+          <IoPersonSharp className="text-xl lg:hidden" />
         </button>
       </div>
       <div className="p-1 py-3 flex bg-[#e9ecef] justify-between items-center ">
@@ -165,39 +227,61 @@ function NavBar() {
 
             {/* US Button */}
             <div className="w-full border-b-[1px] border-slate-500 ">
-              <button className="w-full py-2 pl-[-0.5rem] text-left">US</button>
+              <button className="w-full py-2 pl-[-0.5rem] text-left hover:text-[#326891]">
+                US
+              </button>
             </div>
 
             {/* World Button */}
             <div className="w-full border-b-[1px] border-slate-500 ">
-              <button className="w-full py-2 text-left">World</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                World
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Business</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Business
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Arts</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Arts
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Lifestyle</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Lifestyle
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Opinion</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Opinion
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Audio</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Audio
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Games</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Games
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Cooking</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Cooking
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">Wirecutter</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                Wirecutter
+              </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left">The Athletics</button>
+              <button className="w-full py-2 text-left hover:text-[#326891]">
+                The Athletics
+              </button>
             </div>
           </div>
         </div>
