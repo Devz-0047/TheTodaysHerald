@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 import useGetStockValues from "../utils/useGetStockValues";
-import { searchValue } from "../features/Search/SearchSlice";
+import { searchValue } from "../features/Search/searchSlice";
 import { useDispatch } from "react-redux";
 // import { FaAngleDown } from "react-icons/fa6";
 
