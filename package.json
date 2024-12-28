@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.46.1",
+    "@auth0/auth0-react": "^2.2.4",
+    "@reduxjs/toolkit": "^2.5.0",
     "@tanstack/react-query": "^5.62.7",
     "@tanstack/react-query-devtools": "^5.62.7",
     "i18next": "^23.16.4",
@@ -19,6 +20,7 @@
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^15.1.0",
     "react-icons": "^5.4.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.0.2"
   },
   "devDependencies": {

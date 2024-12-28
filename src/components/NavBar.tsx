@@ -7,13 +7,22 @@ import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 import useGetStockValues from "../utils/useGetStockValues";
+import { searchValue } from "../features/Search/SearchSlice";
+import { useDispatch } from "react-redux";
 // import { FaAngleDown } from "react-icons/fa6";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { stockValues, isLoading } = useGetStockValues();
   const [currentStock, setCurrentStock] = useState<string | null>(null);
-
+  const [isSearchbarOpen, setIsSearchbarOpen] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
+  const dispatch = useDispatch();
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    dispatch(searchValue(search));
+    setSearch("");
+  };
   // const fixedStockValue = stockValue?.["Global Quote"]?.["05. price"]
   //   ? parseFloat(stockValue["Global Quote"]["05. price"]).toFixed(2)
   //   : "";
@@ -41,10 +50,35 @@ function NavBar() {
   return (
     <nav className="z-20 flex flex-col ">
       <div className="items-center bg-[#f1f3f5] justify-between hidden lg:flex px-3 pt-2">
-        <button>
-          <MdOutlineSearch className="text-2xl" />
-        </button>
-        <div className="flex items-center gap-4 ml-48 font-serif text-sm">
+        <div className="flex items-center justify-between gap-4 px-2">
+          <button
+            onClick={() => {
+              setIsSearchbarOpen(!isSearchbarOpen);
+            }}
+          >
+            <MdOutlineSearch className="text-2xl" />
+          </button>
+          {isSearchbarOpen && (
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                className="w-[14rem] py-[1px] focus:outline-none focus:ring-2 dark:focus:ring-black rounded-sm pl-1"
+                placeholder="Search"
+                type="search"
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                }}
+              ></input>
+              <button
+                type="submit"
+                className="ml-3 bg-[#567b95] px-[5px] py-[1.2px] rounded-sm text-white text-[16px]"
+              >
+                Go
+              </button>
+            </form>
+          )}
+        </div>
+        <div className="flex items-center gap-4 font-serif text-sm ml-36">
           <button className="hover:text-[#326891]">English</button>
           <button className="hover:text-[#326891]">हिन्दी</button>
           <button className="hover:text-[#326891]">français</button>
@@ -73,7 +107,8 @@ function NavBar() {
         <NavLink to="/" end>
           <img src={logo} className="h-7 lg:h-18 md:h-14 sm:h-10" />
         </NavLink>
-        <button>
+        <IoPersonSharp className="text-xl lg:hidden" />
+        <button className="hidden lg:inline-block">
           {isLoading
             ? ""
             : stockValues &&
@@ -92,9 +127,19 @@ function NavBar() {
                           : "text-green-700" // Positive change
                       }
                     >
-                      {`${Number(
-                        stockValues[currentStock].changePercent.replace("%", "")
-                      ).toFixed(2)}%`}
+                      {stockValues[currentStock].changePercent.startsWith("-")
+                        ? `${Number(
+                            stockValues[currentStock].changePercent.replace(
+                              "%",
+                              ""
+                            )
+                          ).toFixed(2)}%`
+                        : `+${Number(
+                            stockValues[currentStock].changePercent.replace(
+                              "%",
+                              ""
+                            )
+                          ).toFixed(2)}%`}
                     </span>
                   ) : (
                     "N/A"
@@ -116,7 +161,6 @@ function NavBar() {
                 //   )
                 // </div>
               )}
-          <IoPersonSharp className="text-xl lg:hidden" />
         </button>
       </div>
       <div className="p-1 py-3 flex bg-[#e9ecef] justify-between items-center ">
@@ -209,11 +253,18 @@ function NavBar() {
             </button>
             {/* Search bar */}
             <div className="flex items-center justify-center w-full text-stone-700">
-              <form className="flex items-center w-full gap-2 ">
+              <form
+                className="flex items-center w-full gap-2"
+                onSubmit={handleSearchSubmit}
+              >
                 <input
                   type="text"
                   placeholder="Search..."
+                  value={search}
                   className="w-full px-2 py-1 border border-gray-900 rounded-sm focus:outline-none focus:border-0 focus:outline-2 focus:outline-gray-900 "
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
                 />
 
                 <button
