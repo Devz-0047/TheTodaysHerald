@@ -5,7 +5,7 @@ import { Article } from "../utils/types/types";
 const API_KEY = import.meta.env.VITE_API_KEY;
 //https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}
 function BreakingNews() {
-  const { data, isLoading, error, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["breakingNews"],
     queryFn: async () => {
       const response = await axios.get<{ articles: Article[] }>(
