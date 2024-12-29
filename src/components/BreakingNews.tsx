@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Article } from "../utils/types/types";
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_API_KEY as string;
 //https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}
 function BreakingNews() {
   const { data } = useQuery({
