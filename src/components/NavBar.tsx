@@ -163,7 +163,7 @@ function NavBar() {
               )}
         </button>
       </div>
-      <div className="p-1 py-3 flex bg-[#e9ecef] justify-between items-center ">
+      <div className="p-1 py-3 flex bg-[#e9ecef] justify-between items-center border border-b-black ">
         <p className="font-serif text-xs font-semibold lg:hidden">
           {formattedDate}
         </p>

@@ -17,3 +17,9 @@ html {
   margin: 0;
   padding: 0;
 }
+body {
+  background-color: #f1f3f5;
+}
+::selection {
+  background-color: #99b4c8; /*  desired color for selection  */
+}
