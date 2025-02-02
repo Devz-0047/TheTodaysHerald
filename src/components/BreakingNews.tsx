@@ -9,7 +9,7 @@ function BreakingNews() {
     queryKey: ["breakingNews"],
     queryFn: async () => {
       const response = await axios.get<{ articles: Article[] }>(
-        `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}`
       );
 
       return response.data.articles.slice(0, 10);
