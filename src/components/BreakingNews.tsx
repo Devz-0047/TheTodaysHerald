@@ -2,19 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Article } from "../utils/types/types";
 
-const API_KEY = import.meta.env.VITE_API_KEY as string;
-//https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}
+const API_KEY = import.meta.env.VITE_GNEWS_API_KEY as string;
+
 function BreakingNews() {
   const { data } = useQuery({
     queryKey: ["breakingNews"],
     queryFn: async () => {
       const response = await axios.get<{ articles: Article[] }>(
-        `https://newsapi.org/v2/top-headlines?language=en&apiKey=${API_KEY}`
+        `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&lang=en&country=us&max=10`
       );
-
-      return response.data.articles.slice(0, 10);
+      return response.data.articles; 
     },
+    staleTime: 10 * 60 * 1000, // Cache results for 10 minutes
   });
+
   return (
     <div>
       {data?.map((article: Article, index: number) =>
@@ -32,14 +33,16 @@ function BreakingNews() {
                 {article.description}
               </p>
               <p className="mt-3 font-serif text-sm text-gray-700">
-                By {article.author}
+                By {article.author || "Unknown"}
               </p>
             </div>
-            <img
-              src={article.urlToImage}
-              className=" w-full h-[353px] col-span-2"
-              alt={article.title}
-            />
+            {article.image && (
+              <img
+                src={article.image}
+                className="w-full h-[353px] col-span-2"
+                alt={article.title}
+              />
+            )}
           </div>
         ) : null
       )}

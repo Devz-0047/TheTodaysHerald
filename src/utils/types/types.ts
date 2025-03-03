@@ -1,10 +1,12 @@
 export type Article = {
-  source: { id: string | null; name: string };
-  author: string | null;
   title: string;
   description: string | null;
-  url: string;
-  urlToImage: string | undefined;
-  publishedAt: string;
   content: string | null;
+  url: string;
+  image: string | null; 
+  publishedAt: string | null; 
+  source: {
+    name: string;
+    url: string;
+  };
 };
