@@ -9,4 +9,5 @@ export type Article = {
     name: string;
     url: string;
   };
+  author?: string | null;
 };

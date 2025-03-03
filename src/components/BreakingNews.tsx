@@ -32,8 +32,10 @@ function BreakingNews() {
               <p className="mt-4 font-serif text-base text-gray-800">
                 {article.description}
               </p>
-              <p className="mt-3 font-serif text-sm text-gray-700">
-                By {article.author || "Unknown"}
+              <p className="mt-3 font-serif text-base text-gray-700">
+                By <span className="font-semibold">
+                  {article.source.name || "Unknown"}
+                  </span>
               </p>
             </div>
             {article.image && (
