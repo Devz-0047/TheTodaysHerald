@@ -48,7 +48,7 @@ function NavBar() {
   }, [stockValues]);
 
   return (
-    <nav className="z-20 flex flex-col ">
+    <nav className="z-20 flex flex-col lg:mb-[-10px]">
       <div className="items-center bg-[#f1f3f5] justify-between hidden lg:flex px-3 pt-2">
         <div className="flex items-center justify-between gap-4 px-2">
           <button
