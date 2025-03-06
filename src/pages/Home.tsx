@@ -1,9 +1,9 @@
-import BreakingNews from "../components/BreakingNews";
+import FrontPage from "../components/FrontPage";
 
 function Home() {
   return (
     <div className="mt-5 bg-[#f1f3f5]">
-      <BreakingNews />
+      <FrontPage />
     </div>
   );
 }

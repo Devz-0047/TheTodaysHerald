@@ -79,10 +79,10 @@ function NavBar() {
           )}
         </div>
         <div className="flex items-center gap-4 font-serif text-sm ml-36">
-          <button className="hover:text-[#326891]">English</button>
-          <button className="hover:text-[#326891]">हिन्दी</button>
-          <button className="hover:text-[#326891]">français</button>
-          <button className="hover:text-[#326891]">español</button>
+          <button className="hover:text-[#326891] transition-all">English</button>
+          <button className="hover:text-[#326891] transition-all">हिन्दी</button>
+          <button className="hover:text-[#326891] transition-all">français</button>
+          <button className="hover:text-[#326891] transition-all">español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
@@ -173,67 +173,67 @@ function NavBar() {
         >
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline-offset-4 hover:underline hover:decoration-2"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline-offset-4 hover:underline hover:decoration-2"
           >
             U.S.
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             World
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4 "
           >
             Business
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Art
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Lifestyle
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Opinion
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Audio
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Games
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Cooking
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             Wirecut
           </a>
           <a
             href="#"
-            className="text-base text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
             The Athletic
           </a>
