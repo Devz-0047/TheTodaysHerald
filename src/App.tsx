@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 export default function App(): JSX.Element {
   return (
     <BrowserRouter>
@@ -20,7 +21,12 @@ export default function App(): JSX.Element {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <div>
+
+      <Footer/>
       </div>
+      </div>
+      
     </BrowserRouter>
   );
 }

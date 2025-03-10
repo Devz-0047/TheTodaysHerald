@@ -113,7 +113,7 @@ function NavBar() {
             ? ""
             : stockValues &&
               currentStock && (
-                <div>
+                <div >
                   {currentStock === "QQQ" ? "NDQ" : "SAP"}: $
                   {stockValues[currentStock]?.price
                     ? Number(stockValues[currentStock].price).toFixed(2)
