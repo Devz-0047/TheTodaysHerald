@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoPersonSharp } from "react-icons/io5";
@@ -23,6 +23,7 @@ function NavBar() {
     dispatch(searchValue(search));
     setSearch("");
   };
+  const navigate = useNavigate();
   // const fixedStockValue = stockValue?.["Global Quote"]?.["05. price"]
   //   ? parseFloat(stockValue["Global Quote"]["05. price"]).toFixed(2)
   //   : "";
@@ -96,7 +97,7 @@ function NavBar() {
       <div className="p-3 flex bg-[#f1f3f5] justify-between items-center  shadow-sm">
         <button>
           <RxHamburgerMenu
-            className="text-lg lg:hidden "
+            className="text-lg transition-all lg:hidden"
             onClick={() => setIsMenuOpen((prev) => !prev)}
           />
           <p className="hidden font-serif text-sm font-semibold lg:inline">
@@ -171,72 +172,61 @@ function NavBar() {
           id="nav-menu"
           className="self-center hidden gap-4 m-auto font-sans lg:flex"
         >
-          <a
-            href="#"
+          <button
+            onClick={()=>navigate("/India")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline-offset-4 hover:underline hover:decoration-2"
           >
-            U.S.
-          </a>
-          <a
-            href="#"
+            India
+          </button>
+          <button
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+            onClick={()=>navigate("/world")}
           >
             World
-          </a>
-          <a
-            href="#"
+          </button>
+          <button
+             onClick={()=>navigate("/nation")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4 "
           >
+            Nation
+          </button>
+          <button
+             onClick={()=>navigate("/business")}
+            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
+          >
             Business
-          </a>
-          <a
-            href="#"
+          </button>
+          <button
+           onClick={()=>navigate("/technology")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Art
-          </a>
-          <a
-            href="#"
+            Technology
+          </button>
+          <button
+             onClick={()=>navigate("/entertainment")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Lifestyle
-          </a>
-          <a
-            href="#"
+            Entertainment
+          </button>
+          <button
+             onClick={()=>navigate("/sports")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Opinion
-          </a>
-          <a
-            href="#"
+            Sports
+          </button>
+          <button
+             onClick={()=>navigate("/science")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Audio
-          </a>
-          <a
-            href="#"
+            Science
+          </button>
+          <button
+ onClick={()=>navigate("/health")}            
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Games
-          </a>
-          <a
-            href="#"
-            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
-          >
-            Cooking
-          </a>
-          <a
-            href="#"
-            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
-          >
-            Wirecut
-          </a>
-          <a
-            href="#"
-            className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
-          >
-            The Athletic
-          </a>
+            Health
+          </button>
+         
         </div>
         <button className="lg:hidden">
           <p className="font-serif text-[0.65rem] text-green-700">

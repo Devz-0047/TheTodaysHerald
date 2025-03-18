@@ -4,7 +4,10 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
+import General from "./components/General";
+
 export default function App(): JSX.Element {
+  
   return (
     <BrowserRouter>
       <div className="max-w-screen-xl mx-auto">
@@ -20,6 +23,7 @@ export default function App(): JSX.Element {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/:genre" element={<General/>} />
         </Routes>
         <div>
 

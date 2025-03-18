@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from "../features/Search/searchSlice";
+import genreReducer from "../features/Search/genreSlice"
 export const store = configureStore({
   reducer: {
     search: searchReducer,
+    genre: genreReducer,
   },
 });
 
