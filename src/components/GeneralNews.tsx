@@ -24,7 +24,7 @@ function GeneralNews() {
       
     return (
         <div className="mt-4">
-            <h2 className="my-1 font-serif text-3xl font-bold text-center sm:text-4xl md:text-[42px] ">{genre?.toUpperCase()}</h2>
+            <h2 className="mt-1 font-serif text-3xl font-bold text-center sm:text-4xl md:text-[42px] mb-2">{genre?.toUpperCase()}</h2>
     {isLoading ?  (<div className="pr-2 mx-auto border border-r-black sm:w-[958px] ">
     {[...Array(10)].map((_, index) => (
       <div

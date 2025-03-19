@@ -31,7 +31,7 @@ function SearchResult() {
       return (
         <div className="mt-4">
            
-            <h2 className="my-1 ml-2 font-serif text-lg font-semibold sm:text-xl md:text-2xl">Showing results for <span className="text-3xl font-extrabold">
+            <h2 className="my-1 ml-2 font-serif text-lg font-semibold sm:text-xl md:text-2xl">Showing results for <span className="font-serif text-3xl font-bold">
                 {query} 
                 </span>
                 </h2>

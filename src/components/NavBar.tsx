@@ -24,6 +24,7 @@ function NavBar() {
     dispatch(searchValue(search));
     setSearch("");
     setIsSearchbarOpen(!isSearchbarOpen);
+    setIsMenuOpen(!isMenuOpen);
     if (search.trim()) {
       navigate(`/search?query=${encodeURIComponent(search)}`);
     }
@@ -273,62 +274,71 @@ function NavBar() {
 
             {/* US Button */}
             <div className="w-full border-b-[1px] border-slate-500 ">
-              <button className="w-full py-2 pl-[-0.5rem] text-left hover:text-[#326891]">
-                US
+              <button className="w-full py-2 pl-[-0.5rem] text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/India")}}>
+                India
               </button>
             </div>
 
             {/* World Button */}
             <div className="w-full border-b-[1px] border-slate-500 ">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/world")}}>
                 World
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/nation")}}>
+                Nation
+              </button>
+            </div>
+            <div className="w-full border-b-[1px] border-slate-500">
+              <button className="w-full py-2 text-left hover:text-[#326891] "onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/business")}}>
                 Business
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Arts
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/technology")}}>
+                Technology
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Lifestyle
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/entertainment")}}>
+                Entertainment
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Opinion
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/sports")}}>
+                Sports
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Audio
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/science")}}>
+                Science
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Games
+              <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
+                setIsMenuOpen(!isMenuOpen)
+                navigate("/health")}}>
+                Health
               </button>
             </div>
-            <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Cooking
-              </button>
-            </div>
-            <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                Wirecutter
-              </button>
-            </div>
-            <div className="w-full border-b-[1px] border-slate-500">
-              <button className="w-full py-2 text-left hover:text-[#326891]">
-                The Athletics
-              </button>
-            </div>
+           
           </div>
         </div>
       )}
