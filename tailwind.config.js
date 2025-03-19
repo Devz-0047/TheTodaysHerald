@@ -11,7 +11,7 @@ export default {
           "system-ui",
           "sans-serif",
         ], // Sans-serif fonts
-        serif: ["Adamina","Georgia", "Merriweather", "ui-serif", "serif"], // Serif fonts
+        serif: ["Adamina","Georgia", "Merriweather","ui-serif", "serif"], // Serif fonts
       },
     },
   },

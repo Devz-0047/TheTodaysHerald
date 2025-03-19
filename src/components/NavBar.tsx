@@ -18,12 +18,17 @@ function NavBar() {
   const [isSearchbarOpen, setIsSearchbarOpen] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(searchValue(search));
     setSearch("");
+    setIsSearchbarOpen(!isSearchbarOpen);
+    if (search.trim()) {
+      navigate(`/search?query=${encodeURIComponent(search)}`);
+    }
   };
-  const navigate = useNavigate();
+ 
   // const fixedStockValue = stockValue?.["Global Quote"]?.["05. price"]
   //   ? parseFloat(stockValue["Global Quote"]["05. price"]).toFixed(2)
   //   : "";
