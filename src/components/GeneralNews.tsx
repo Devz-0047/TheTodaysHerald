@@ -10,7 +10,7 @@ function GeneralNews() {
   const languagevalue = useSelector((state: RootState) => state.language.value);
     const {genre} = useParams<{genre:string}>(); //to get genre from URL
     const { data, isLoading } = useQuery({
-        queryKey: ["news", genre,languagevalue],  // Ensure genre change triggers refetch
+        queryKey: ["news", genre,languagevalue,"en"],  // Ensure genre change triggers refetch
         queryFn: async () => {
           if (!genre) return [];  // Prevent API call if genre is undefined
           const url =

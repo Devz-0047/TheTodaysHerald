@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
 import General from "./components/General";
 import SearchResult from "./components/SearchResult";
+import Subscribe from "./pages/Subscribe";
 
 export default function App(): JSX.Element {
   
@@ -26,6 +27,7 @@ export default function App(): JSX.Element {
           <Route path="*" element={<NotFound />} />
           <Route path="/:genre" element={<General/>} />
           <Route path="/search" element={<SearchResult/>}/>
+          <Route path="/subscribe" element={<Subscribe/>}/>
         </Routes>
         <div>
 
