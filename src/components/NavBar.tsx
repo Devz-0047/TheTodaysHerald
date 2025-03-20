@@ -10,9 +10,11 @@ import useGetStockValues from "../utils/useGetStockValues";
 import { searchValue } from "../features/Search/searchSlice";
 import { languageValue } from "../features/Search/languageSlice";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 // import { FaAngleDown } from "react-icons/fa6";
 
 function NavBar() {
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { stockValues, isLoading } = useGetStockValues();
   const [currentStock, setCurrentStock] = useState<string | null>(null);
@@ -82,23 +84,23 @@ function NavBar() {
                 type="submit"
                 className="ml-3 bg-[#567b95] px-[5px] py-[1.2px] rounded-sm text-white text-[16px]"
               >
-                Go
+                {t("go")}
               </button>
             </form>
           )}
         </div>
         <div className="flex items-center gap-4 font-serif text-sm ml-36">
-          <button className="hover:text-[#326891] transition-all" onClick={()=>{setLang("en"); dispatch(languageValue("en"))}}>English</button>
-          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("hi"); dispatch(languageValue("hi"))}}>हिन्दी</button>
-          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("fr"); dispatch(languageValue("fr"))}}>français</button>
-          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("es"); dispatch(languageValue("es"))}}>español</button>
+          <button className="hover:text-[#326891] transition-all" onClick={()=>{setLang("en"); dispatch(languageValue("en"));i18n.changeLanguage("en")}}>English</button>
+          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("hi"); dispatch(languageValue("hi"));i18n.changeLanguage("hi")}}>हिन्दी</button>
+          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("fr"); dispatch(languageValue("fr"));i18n.changeLanguage("fr")}}>français</button>
+          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("es"); dispatch(languageValue("es"));i18n.changeLanguage("es")}}>español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
-            Subscribe Now
+            {t("subscribe")}
           </button>
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
-            Login
+            {t("login")}
           </button>
         </div>
       </div>

@@ -1,32 +1,42 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-// the translations
-// (tip move them in a JSON file and import them,
-// or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
   en: {
     translation: {
-      welcomeMessage: "Welcome to {{count}} notification",
+      go: "Go",
+      subscribe: "Subscribe Now",
+      login: "Login",
+    },
+  },
+  hi: {
+    translation: {
+      go: "जाना",
+      subscribe: "सदस्यता लें",
+      login: "लॉग इन करें",
     },
   },
   fr: {
     translation: {
-      welcomeMessagey: "Vous avez {{count}} notification",
+      go: "Aller",
+      subscribe: "S'abonner",
+      login: "Se connecter",
+    },
+  },
+  es: {
+    translation: {
+      go: "Ir",
+      subscribe: "Suscríbete ahora",
+      login: "Acceso",
     },
   },
 };
 
-i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
-  .init({
-    resources,
-    fallbackLng: "en",
-    lng: "fr",
-
-    interpolation: {
-      escapeValue: false, // react already safes from xss
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en", // Default language
+  fallbackLng: "en", // If translation is missing, fallback to English
+  interpolation: { escapeValue: false }, // React already protects against XSS
+});
 
 export default i18n;
