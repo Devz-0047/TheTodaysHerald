@@ -97,7 +97,7 @@ function NavBar() {
           <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("es"); dispatch(languageValue("es"));i18n.changeLanguage("es")}}>español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
-          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
+          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]" onClick={()=>navigate("/subscribe")}>
             {t("subscribe")}
           </button>
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
@@ -187,59 +187,59 @@ function NavBar() {
             onClick={()=>navigate("/India")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline-offset-4 hover:underline hover:decoration-2"
           >
-            India
+            {t("country")}
           </button>
           <button
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
             onClick={()=>navigate("/world")}
           >
-            World
+            {t("world")}
           </button>
           <button
              onClick={()=>navigate("/nation")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4 "
           >
-            Nation
+            {t("nation")}
           </button>
           <button
              onClick={()=>navigate("/business")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Business
+            {t("business")}
           </button>
           <button
            onClick={()=>navigate("/technology")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Technology
+            {t("technology")}
           </button>
           <button
              onClick={()=>navigate("/entertainment")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Entertainment
+            {t("entertainment")}
           </button>
           <button
              onClick={()=>navigate("/sports")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Sports
+            {t("sports")}
           </button>
           <button
              onClick={()=>navigate("/science")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Science
+            {t("science")}
           </button>
           <button
  onClick={()=>navigate("/health")}            
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline hover:decoration-2 hover:underline-offset-4"
           >
-            Health
+            {t("health")}
           </button>
          
         </div>
-        <button className="lg:hidden">
+        <button className="lg:hidden" onClick={()=>navigate("/India")}>
           <p className="font-serif text-[0.65rem] text-green-700">
             SUBSCRIBE FOR ₹14/WEEK{isMenuOpen}
           </p>
@@ -272,7 +272,7 @@ function NavBar() {
                   type="submit"
                   className="bg-[#326891] text-white px-2 py-1 rounded-sm"
                 >
-                  Go
+                  {t("go")}
                 </button>
               </form>
             </div>
@@ -282,7 +282,7 @@ function NavBar() {
               <button className="w-full py-2 pl-[-0.5rem] text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/India")}}>
-                India
+                {t("country")}
               </button>
             </div>
 
@@ -291,56 +291,56 @@ function NavBar() {
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/world")}}>
-                World
+                {t("world")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/nation")}}>
-                Nation
+                {t("nation")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891] "onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/business")}}>
-                Business
+                {t("business")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/technology")}}>
-                Technology
+                {t("technology")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/entertainment")}}>
-                Entertainment
+                {t("entertainment")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/sports")}}>
-                Sports
+                {t("sports")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/science")}}>
-                Science
+                {t("science")}
               </button>
             </div>
             <div className="w-full border-b-[1px] border-slate-500">
               <button className="w-full py-2 text-left hover:text-[#326891]" onClick={()=>{
                 setIsMenuOpen(!isMenuOpen)
                 navigate("/health")}}>
-                Health
+                {t("health")}
               </button>
             </div>
            
