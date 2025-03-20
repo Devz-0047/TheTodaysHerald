@@ -29,6 +29,7 @@ function NavBar() {
     setSearch("");
     setIsSearchbarOpen(!isSearchbarOpen);
     setIsMenuOpen(!isMenuOpen);
+    console.log(lang);
     if (search.trim()) {
       navigate(`/search?query=${encodeURIComponent(search)}`);
     }
