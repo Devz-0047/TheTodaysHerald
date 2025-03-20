@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Article } from "../utils/types/types";
+import { RootState } from "../app/store";
+import { useSelector } from "react-redux";
 const API_KEY = import.meta.env.VITE_GNEWS_API_KEY as string;
 
 function Sidebar() {
+  const languagevalue = useSelector((state: RootState) => state.language.value);
     const truncateText = (text: string, wordLimit: number) => {
         const words = text.split(" ");
         return words.length > wordLimit 
@@ -15,7 +18,7 @@ function Sidebar() {
         queryKey: ["topTech"],
         queryFn: async () => {
           const response = await axios.get<{ articles: Article[] }>(
-            `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=en&max=5`
+            `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=${languagevalue}&max=5`
           );
           return response.data.articles; 
         },

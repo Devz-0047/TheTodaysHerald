@@ -2,17 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Article } from "../utils/types/types";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
+
 const API_KEY = import.meta.env.VITE_GNEWS_API_KEY as string;
 function GeneralNews() {
+  const languagevalue = useSelector((state: RootState) => state.language.value);
     const {genre} = useParams<{genre:string}>(); //to get genre from URL
     const { data, isLoading } = useQuery({
-        queryKey: ["news", genre],  // Ensure genre change triggers refetch
+        queryKey: ["news", genre,languagevalue],  // Ensure genre change triggers refetch
         queryFn: async () => {
           if (!genre) return [];  // Prevent API call if genre is undefined
           const url =
             genre === "India"
-              ? `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&country=in&lang=en`
-              : `https://gnews.io/api/v4/top-headlines?category=${genre}&token=${API_KEY}&lang=en`;
+              ? `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&country=in&lang=${languagevalue}`
+              : `https://gnews.io/api/v4/top-headlines?category=${genre}&token=${API_KEY}&lang=${languagevalue}`;
       
           const response = await axios.get<{ articles: Article[] }>(url);
           return response.data.articles;

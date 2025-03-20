@@ -8,6 +8,7 @@ import { MdOutlineSearch } from "react-icons/md";
 import { IoCloseSharp } from "react-icons/io5";
 import useGetStockValues from "../utils/useGetStockValues";
 import { searchValue } from "../features/Search/searchSlice";
+import { languageValue } from "../features/Search/languageSlice";
 import { useDispatch } from "react-redux";
 // import { FaAngleDown } from "react-icons/fa6";
 
@@ -17,6 +18,7 @@ function NavBar() {
   const [currentStock, setCurrentStock] = useState<string | null>(null);
   const [isSearchbarOpen, setIsSearchbarOpen] = useState<boolean>(false);
   const [search, setSearch] = useState<string>("");
+  const [lang,setLang] = useState<string>("en");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,10 +88,10 @@ function NavBar() {
           )}
         </div>
         <div className="flex items-center gap-4 font-serif text-sm ml-36">
-          <button className="hover:text-[#326891] transition-all">English</button>
-          <button className="hover:text-[#326891] transition-all">हिन्दी</button>
-          <button className="hover:text-[#326891] transition-all">français</button>
-          <button className="hover:text-[#326891] transition-all">español</button>
+          <button className="hover:text-[#326891] transition-all" onClick={()=>{setLang("en"); dispatch(languageValue("en"))}}>English</button>
+          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("hi"); dispatch(languageValue("hi"))}}>हिन्दी</button>
+          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("fr"); dispatch(languageValue("fr"))}}>français</button>
+          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("es"); dispatch(languageValue("es"))}}>español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">

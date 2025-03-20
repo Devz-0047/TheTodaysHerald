@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Article } from "../utils/types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../app/store";
 const API_KEY = import.meta.env.VITE_GNEWS_API_KEY as string;
 function News() {
+  const languagevalue = useSelector((state: RootState) => state.language.value);
     const { data,isLoading } = useQuery({
-        queryKey: ["breakingNews"],
+        queryKey: ["breakingNews",languagevalue],
         queryFn: async () => {
           const response = await axios.get<{ articles: Article[] }>(
-            `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&lang=en&country=in&max=10`
+            `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&lang=${languagevalue}&country=in&max=10`
           );
           return response.data.articles; 
         },
