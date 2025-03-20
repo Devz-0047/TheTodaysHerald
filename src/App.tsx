@@ -7,8 +7,15 @@ import Footer from "./components/Footer";
 import General from "./components/General";
 import SearchResult from "./components/SearchResult";
 import Subscribe from "./pages/Subscribe";
+import { initGA } from "./utils/analytics";
+import { useEffect } from "react";
+import ScrollTracker from "./components/ScrollTracker";
+import SessionTracker from "./components/SessionTracker";
 
 export default function App(): JSX.Element {
+  useEffect(() => {
+    initGA(); 
+  }, []);
   
   return (
     <BrowserRouter>
@@ -19,7 +26,10 @@ export default function App(): JSX.Element {
             toastOptions={{ style: { background: "#f1f3f5" } }}
           />
         </div>
+        <ScrollTracker/>
+        <SessionTracker/>
         <div>
+          
           <NavBar />
         </div>
         <Routes>

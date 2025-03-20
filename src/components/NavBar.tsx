@@ -10,6 +10,7 @@ import useGetStockValues from "../utils/useGetStockValues";
 import { searchValue } from "../features/Search/searchSlice";
 import { languageValue } from "../features/Search/languageSlice";
 import { useDispatch } from "react-redux";
+import ReactGA from "react-ga4";
 import { useTranslation } from "react-i18next";
 // import { FaAngleDown } from "react-icons/fa6";
 
@@ -78,6 +79,11 @@ function NavBar() {
                 type="search"
                 value={search}
                 onChange={(e) => {
+                  ReactGA.event({
+                    category: "User",
+                    action: "Search Button Clicked",
+                    label: "Search Button",
+                  });
                   setSearch(e.target.value);
                 }}
               ></input>
@@ -97,7 +103,13 @@ function NavBar() {
           <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("es"); dispatch(languageValue("es"));i18n.changeLanguage("es")}}>español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
-          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]" onClick={()=>navigate("/subscribe")}>
+          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]" onClick={()=>{
+              ReactGA.event({
+                category: "User",
+                action: "Subscribe Button",
+                label: "Subscribe Button",
+              });
+            navigate("/subscribe")}}>
             {t("subscribe")}
           </button>
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
@@ -239,7 +251,11 @@ function NavBar() {
           </button>
          
         </div>
-        <button className="lg:hidden" onClick={()=>navigate("/India")}>
+        <button className="lg:hidden" onClick={()=>{  ReactGA.event({
+      category: "User",
+      action: "Small Subscribe Button",
+      label: "Small Subscribe Button",
+    });navigate("/India")}}>
           <p className="font-serif text-[0.65rem] text-green-700">
             SUBSCRIBE FOR ₹14/WEEK{isMenuOpen}
           </p>
@@ -264,6 +280,11 @@ function NavBar() {
                   value={search}
                   className="w-full px-2 py-1 border border-gray-900 rounded-sm focus:outline-none focus:border-0 focus:outline-2 focus:outline-gray-900 "
                   onChange={(e) => {
+                    ReactGA.event({
+                      category: "User",
+                      action: "Small Search Button",
+                      label: "Small Search Button",
+                    });
                     setSearch(e.target.value);
                   }}
                 />
