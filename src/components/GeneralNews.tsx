@@ -27,7 +27,7 @@ function GeneralNews() {
       
       
     return (
-        <div className="mt-4">
+        <div className="mt-4 ">
             <h2 className="mt-1 font-serif text-3xl font-bold text-center sm:text-4xl md:text-[42px] mb-2">{genre?.toUpperCase()}</h2>
     {isLoading ?  (<div className="pr-2 mx-auto border border-r-black sm:w-[958px] ">
     {[...Array(10)].map((_, index) => (
@@ -55,7 +55,7 @@ function GeneralNews() {
             className="grid grid-cols-1 sm:grid-cols-2 pb-1 mb-1 border border-b-black gap-x-4 sm:w-[958px] cursor-pointer hover:bg-[#e9ecef] transition-all overflow-x-hidden "
             onClick={() => window.open(article.url, "_blank")}
           >
-            <div className="ml-2 ">
+            <div className="ml-4 ">
               <h2 className="mt-2 font-serif text-2xl font-semibold text-black break-words text-wrap">
                 {article.title}
               </h2>
@@ -72,7 +72,7 @@ function GeneralNews() {
               <>
               <img
                 src={article.image}
-                className="w-[300px] h-[200px] sm:w-[300px] lg:w-[500px] sm:h-[353px]  self-center mt-3 sm:mt-0 lg:justify-self-end"
+                className="w-[300px] h-[200px] sm:w-[300px] lg:w-[500px] sm:h-[353px]  self-center mt-3 sm:mt-0 lg:justify-self-end ml-4"
                 alt={article.title}
                 />
                 <p className="pl-2 mt-3 font-serif text-base text-gray-700 sm:hidden">

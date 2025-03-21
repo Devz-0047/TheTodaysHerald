@@ -259,7 +259,7 @@ function NavBar() {
       category: "User",
       action: "Small Subscribe Button",
       label: "Small Subscribe Button",
-    });navigate("/India")}}>
+    });navigate("/subscribe")}}>
           <p className="font-serif text-[0.65rem] text-green-700">
             SUBSCRIBE FOR ₹14/WEEK{isMenuOpen}
           </p>
