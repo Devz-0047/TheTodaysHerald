@@ -137,7 +137,7 @@ function NavBar() {
           <img src={logo} className="h-7 lg:h-18 md:h-14 sm:h-10" />
         </NavLink>
         {isAuthenticated?(<button onClick={()=>logout()}>
-          <IoPersonRemoveSharp/>
+          <IoPersonRemoveSharp className="text-xl lg:hidden"/>
           </button>):(<button onClick={()=>loginWithRedirect()}>
         <IoPersonAddSharp className="text-xl lg:hidden" />
           </button>
