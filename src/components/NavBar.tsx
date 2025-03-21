@@ -1,7 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { IoPersonSharp } from "react-icons/io5";
+import { IoPersonAddSharp } from "react-icons/io5";
+import { IoPersonRemoveSharp } from "react-icons/io5";
 import formattedDate from "../utils/DateGetter";
 import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
@@ -135,7 +136,13 @@ function NavBar() {
         <NavLink to="/" end>
           <img src={logo} className="h-7 lg:h-18 md:h-14 sm:h-10" />
         </NavLink>
-        <IoPersonSharp className="text-xl lg:hidden" />
+        {isAuthenticated?(<button onClick={()=>logout()}>
+          <IoPersonRemoveSharp/>
+          </button>):(<button onClick={()=>loginWithRedirect()}>
+        <IoPersonAddSharp className="text-xl lg:hidden" />
+          </button>
+        )
+}
         <button className="hidden lg:inline-block">
           {isLoading
             ? ""
