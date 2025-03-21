@@ -12,6 +12,7 @@ import { languageValue } from "../features/Search/languageSlice";
 import { useDispatch } from "react-redux";
 import ReactGA from "react-ga4";
 import { useTranslation } from "react-i18next";
+import { useAuth0 } from "@auth0/auth0-react";
 // import { FaAngleDown } from "react-icons/fa6";
 
 function NavBar() {
@@ -24,6 +25,7 @@ function NavBar() {
   const [lang,setLang] = useState<string>("en");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {loginWithRedirect, isAuthenticated, logout} = useAuth0();
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(searchValue(search));
@@ -112,9 +114,11 @@ function NavBar() {
             navigate("/subscribe")}}>
             {t("subscribe")}
           </button>
-          <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]">
+         {!isAuthenticated? (<button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]" onClick={()=>loginWithRedirect()}>
             {t("login")}
-          </button>
+          </button>):(<button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]" onClick={()=>logout()}>
+            {t("logout")}
+          </button>)}
         </div>
       </div>
       <div className="p-3 flex bg-[#f1f3f5] justify-between items-center  shadow-sm">
@@ -196,7 +200,7 @@ function NavBar() {
           className="self-center hidden gap-4 m-auto font-sans lg:flex"
         >
           <button
-            onClick={()=>navigate("/India")}
+            onClick={()=>navigate("India")}
             className="text-base transition-all text-slate-800 hover:decoration-slate-950 hover:underline-offset-4 hover:underline hover:decoration-2"
           >
             {t("country")}

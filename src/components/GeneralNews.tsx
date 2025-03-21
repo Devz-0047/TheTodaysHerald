@@ -14,8 +14,8 @@ function GeneralNews() {
         queryFn: async () => {
           if (!genre) return [];  // Prevent API call if genre is undefined
           const url =
-            genre === "India"
-              ? `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&country=in&lang=en`
+            genre === "India" 
+              ? `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&country=in&lang=${languagevalue}`
               : `https://gnews.io/api/v4/top-headlines?category=${genre}&token=${API_KEY}&lang=${languagevalue}`;
       
           const response = await axios.get<{ articles: Article[] }>(url);

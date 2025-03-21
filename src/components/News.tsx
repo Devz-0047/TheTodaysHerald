@@ -10,7 +10,7 @@ function News() {
         queryKey: ["breakingNews",languagevalue],
         queryFn: async () => {
           const response = await axios.get<{ articles: Article[] }>(
-            `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&lang=${languagevalue}&country=in&max=10`
+            `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&lang=${languagevalue}&max=10`
           );
           return response.data.articles; 
         },

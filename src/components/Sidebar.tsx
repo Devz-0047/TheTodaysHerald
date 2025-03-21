@@ -15,7 +15,7 @@ function Sidebar() {
       };
       
      const { data,isLoading} = useQuery({
-        queryKey: ["topTech"],
+        queryKey: ["topTech",languagevalue],
         queryFn: async () => {
           const response = await axios.get<{ articles: Article[] }>(
             `https://gnews.io/api/v4/top-headlines?category=technology&token=${API_KEY}&lang=${languagevalue}&max=5`

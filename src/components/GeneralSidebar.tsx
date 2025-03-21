@@ -46,9 +46,9 @@ function GeneralSidebar() {
       
       return (<div className="mt-14">
       
-        {isLoading? (<div className="pr-2 mx-auto border border-r-black sm:w-[958px] hidden xl:inline-block">
+        {isLoading? (<div className="pr-2 mx-auto border border-r-black sm:max-w-[958px] hidden xl:inline-block">
     {[...Array(10)].map((_, index) => (
-      <div
+        <div
         key={index}
         className="grid grid-cols-1 sm:grid-cols-2 pb-1 mb-1 border border-b-black gap-x-4 cursor-pointer hover:bg-[#e9ecef] transition-all animate-pulse"
       >
