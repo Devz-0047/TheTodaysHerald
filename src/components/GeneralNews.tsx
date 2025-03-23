@@ -7,6 +7,7 @@ import { RootState } from "../app/store";
 
 const API_KEY = import.meta.env.VITE_GNEWS_API_KEY as string;
 function GeneralNews() {
+  
   const languagevalue = useSelector((state: RootState) => state.language.value);
     const {genre} = useParams<{genre:string}>(); //to get genre from URL
     const { data, isLoading } = useQuery({

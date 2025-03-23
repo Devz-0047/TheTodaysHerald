@@ -27,6 +27,7 @@ function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {loginWithRedirect, isAuthenticated, logout} = useAuth0();
+  const currentLanguage = i18n.language;
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(searchValue(search));
@@ -99,11 +100,11 @@ function NavBar() {
             </form>
           )}
         </div>
-        <div className="flex items-center gap-4 font-serif text-sm ml-36">
-          <button className="hover:text-[#326891] transition-all" onClick={()=>{setLang("en"); dispatch(languageValue("en"));i18n.changeLanguage("en")}}>English</button>
-          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("hi"); dispatch(languageValue("hi"));i18n.changeLanguage("hi")}}>हिन्दी</button>
-          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("fr"); dispatch(languageValue("fr"));i18n.changeLanguage("fr")}}>français</button>
-          <button className="hover:text-[#326891] transition-all"onClick={()=>{setLang("es"); dispatch(languageValue("es"));i18n.changeLanguage("es")}}>español</button>
+        <div className="absolute flex items-center gap-4 font-serif text-sm transform -translate-x-1/2 left-1/2">
+          <button className={`hover:text-[#326891] transition-all ${currentLanguage === "en" ? "!text-[#326891]" : ""}`} onClick={()=>{setLang("en"); dispatch(languageValue("en"));i18n.changeLanguage("en")}}>English</button>
+          <button className={`hover:text-[#326891] transition-all ${currentLanguage === "hi" ? "!text-[#326891]" : ""}`} onClick={()=>{setLang("hi"); dispatch(languageValue("hi"));i18n.changeLanguage("hi")}}>हिन्दी</button>
+          <button className={`hover:text-[#326891] transition-all ${currentLanguage === "fr" ? "!text-[#326891]" : ""}`} onClick={()=>{setLang("fr"); dispatch(languageValue("fr"));i18n.changeLanguage("fr")}}>français</button>
+          <button className={`hover:text-[#326891] transition-all ${currentLanguage === "es" ? "!text-[#326891]" : ""}`} onClick={()=>{setLang("es"); dispatch(languageValue("es"));i18n.changeLanguage("es")}}>español</button>
         </div>
         <div className="flex items-center justify-center gap-4 text-white">
           <button className="bg-[#567b95] px-2 rounded-sm py-[0.12rem] hover:bg-[#326891]" onClick={()=>{
@@ -122,82 +123,68 @@ function NavBar() {
           </button>)}
         </div>
       </div>
-      <div className="p-3 flex bg-[#f1f3f5] justify-between items-center  shadow-sm">
-        <button>
-          <RxHamburgerMenu
-            className="text-lg transition-all lg:hidden"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-          />
-          <p className="hidden font-serif text-sm font-semibold lg:inline">
-            {formattedDate}
-          </p>
-        </button>
+      <div className="relative p-3 flex bg-[#f1f3f5] justify-between items-center shadow-sm py-8">
+  <button>
+    <RxHamburgerMenu
+      className="text-lg transition-all lg:hidden"
+      onClick={() => setIsMenuOpen((prev) => !prev)}
+    />
+    <p className="hidden font-serif text-sm font-semibold lg:inline">
+      {formattedDate}
+    </p>
+  </button>
 
-        <NavLink to="/" end>
-          <img src={logo} className="h-7 lg:h-18 md:h-14 sm:h-10" />
-        </NavLink>
-        {isAuthenticated?(<button onClick={()=>logout()}>
-          <IoPersonRemoveSharp className="text-xl lg:hidden"/>
-          </button>):(<button onClick={()=>loginWithRedirect()}>
-        <IoPersonAddSharp className="text-xl lg:hidden" />
-          </button>
-        )
-}
-        <button className="hidden lg:inline-block">
-          {isLoading
-            ? ""
-            : stockValues &&
-              currentStock && (
-                <div >
-                  {currentStock === "QQQ" ? "NDQ" : "SAP"}: $
-                  {stockValues[currentStock]?.price
-                    ? Number(stockValues[currentStock].price).toFixed(2)
-                    : "N/A"}{" "}
-                  (
-                  {stockValues[currentStock]?.changePercent ? (
-                    <span
-                      className={
-                        stockValues[currentStock].changePercent.startsWith("-")
-                          ? "text-red-700" // Negative change
-                          : "text-green-700" // Positive change
-                      }
-                    >
-                      {stockValues[currentStock].changePercent.startsWith("-")
-                        ? `${Number(
-                            stockValues[currentStock].changePercent.replace(
-                              "%",
-                              ""
-                            )
-                          ).toFixed(2)}%`
-                        : `+${Number(
-                            stockValues[currentStock].changePercent.replace(
-                              "%",
-                              ""
-                            )
-                          ).toFixed(2)}%`}
-                    </span>
-                  ) : (
-                    "N/A"
-                  )}
-                  )
-                </div>
+  {/* Centered Logo */}
+  <NavLink to="/" end className="absolute transform -translate-x-1/2 left-1/2">
+    <img src={logo} className="h-7 lg:h-18 md:h-14 sm:h-10" />
+  </NavLink>
 
-                // <div>
-                //   {currentStock}: $
-                //   {stockValues[currentStock]?.price
-                //     ? Number(stockValues[currentStock].price).toFixed(2)
-                //     : "N/A"}{" "}
-                //   (
-                //   {stockValues[currentStock]?.changePercent
-                //     ? `${Number(
-                //         stockValues[currentStock].changePercent.replace("%", "")
-                //       ).toFixed(2)}%`
-                //     : "N/A"}
-                //   )
-                // </div>
-              )}
-        </button>
-      </div>
+  {isAuthenticated ? (
+    <button onClick={() => logout()}>
+      <IoPersonRemoveSharp className="text-xl lg:hidden" />
+    </button>
+  ) : (
+    <button onClick={() => loginWithRedirect()}>
+      <IoPersonAddSharp className="text-xl lg:hidden" />
+    </button>
+  )}
+
+  <button className="hidden lg:inline-block">
+    {isLoading
+      ? ""
+      : stockValues &&
+        currentStock && (
+          <div>
+            {currentStock === "QQQ" ? "NDQ" : "SAP"}: $
+            {stockValues[currentStock]?.price
+              ? Number(stockValues[currentStock].price).toFixed(2)
+              : "N/A"}{" "}
+            (
+            {stockValues[currentStock]?.changePercent ? (
+              <span
+                className={
+                  stockValues[currentStock].changePercent.startsWith("-")
+                    ? "text-red-700"
+                    : "text-green-700"
+                }
+              >
+                {stockValues[currentStock].changePercent.startsWith("-")
+                  ? `${Number(
+                      stockValues[currentStock].changePercent.replace("%", "")
+                    ).toFixed(2)}%`
+                  : `+${Number(
+                      stockValues[currentStock].changePercent.replace("%", "")
+                    ).toFixed(2)}%`}
+              </span>
+            ) : (
+              "N/A"
+            )}
+            )
+          </div>
+        )}
+  </button>
+</div>
+
       <div className="p-1 py-3 flex bg-[#e9ecef] justify-between items-center border border-b-black ">
         <p className="font-serif text-xs font-semibold lg:hidden">
           {formattedDate}
