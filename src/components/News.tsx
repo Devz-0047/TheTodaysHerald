@@ -8,7 +8,11 @@ function News() {
   const languagevalue = useSelector((state: RootState) => state.language.value);
     const { data,isLoading } = useQuery({
         queryKey: ["breakingNews",languagevalue],
-        queryFn: async () => {
+    queryFn: async () => {
+          if (!API_KEY) {
+             console.error("VITE_GNEWS_API_KEY is missing!");
+             return [];
+          }
           const response = await axios.get<{ articles: Article[] }>(
             `https://gnews.io/api/v4/top-headlines?token=${API_KEY}&lang=${languagevalue}&max=10`
           );
