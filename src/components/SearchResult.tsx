@@ -5,8 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
+import { getNewsUrl } from "../utils/apiHelper";
 
-const API_KEY = import.meta.env.VITE_GNEWS_API_KEY as string;
+
 
 function SearchResult() {
   const searchvalue = useSelector((state: RootState) => state.search.value);
@@ -16,12 +17,8 @@ function SearchResult() {
     queryKey: [query, searchvalue],  // Ensure query change triggers refetch
     queryFn: async () => {
       if (!query) return [];
-      if (!API_KEY) {
-        console.error("VITE_GNEWS_API_KEY is missing!");
-        return [];
-      }
-      const url =
-        `https://gnews.io/api/v4/search?q=${query}&token=${API_KEY}&lang=en&max=10`
+
+      const url = getNewsUrl({ endpoint: 'search', q: query, lang: 'en', max: '10' });
       const response = await axios.get<{ articles: Article[] }>(url);
       return response.data.articles;
     },
